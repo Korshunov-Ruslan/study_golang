@@ -1,59 +1,38 @@
 package main
 
-import (
-	"fmt"
-	"math"
-)
+import "fmt"
 
-const size = 10
-
-func findTwoSmallest(input [size]int) (int, int) {
-	min := input[0]
-	for i := 0; i < len(input); i++ {
-		if input[i] < min {
-			min = input[i]
+func maximun(arr [3]int) int {
+	max := arr[0]
+	for i := 0; i < len(arr); i++ {
+		if arr[i] > max {
+			max = arr[i]
 		}
 	}
-	secondMin := math.MaxInt
-	for i := 0; i < len(input); i++ {
-		if input[i] < secondMin && input[i] > min {
-			secondMin = input[i]
-		}
-	}
-	return min, secondMin
+	return max
 }
-
-func twoSmallestNew(input [size]int) (int, int) {
-	min := math.MaxInt
-	secondMin := math.MaxInt
-
-	for i := 0; i < len(input); i++ {
-		if input[i] < min {
-			secondMin = min
-			min = input[i]
-		} else if input[i] < secondMin {
-			secondMin = input[i]
-		}
+func matrixMax(matrix [4][3]int) [4]int {
+	var result [4]int
+	for i := 0; i < len(matrix); i++ {
+		min := maximun(matrix[i])
+		fmt.Println(min)
+		result[i] = min
 	}
-	return min, secondMin
+	return result
 }
-
-func findTwoLargestNumbers(input [size]int) (int, int) {
-	max := math.MinInt
-	secondMax := math.MinInt
-	for i := 0; i < len(input); i++ {
-		if input[i] > max {
-			secondMax = max
-			max = input[i]
-		} else if input[i] > secondMax {
-			secondMax = input[i]
-		}
+func diagonal(matrix [4][3]int) int {
+	a := 0
+	for i := 0; i < len(matrix); i++ {
+		fmt.Println(matrix[i][i])
 	}
-	return max, secondMax
+	return a
 }
 func main() {
-	number := [size]int{10, 20, 30, 40, 50, 60, 70, 80, 90, 100}
-	fmt.Println(findTwoSmallest(number))
-	fmt.Println(twoSmallestNew(number))
-	fmt.Println(findTwoLargestNumbers(number))
+	a := [4][3]int{
+		{3, 1, 3},
+		{2, 2, 2},
+		{1, 1, 0},
+		{100, 100, 100},
+	}
+	fmt.Println(diagonal(a))
 }
