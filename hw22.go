@@ -34,12 +34,26 @@ const elem = 12
 //	return array
 //}
 func findNumberAndIndex(arr [elem]int, value int) (index int, result int) {
-	for i := 0; i < elem; i++ {
-		if arr[i] == value {
-			result = len(arr[i:]) - 1
-			index = i
+	index = -1
+	min, max := 0, elem-1
+	//for i := 0; i < elem; i++ {
+	//	if arr[i] == value {
+	//		result = len(arr[i:]) - 1
+	//		index = i
+	//	}
+	//}
+	for max >= min {
+		middle := (max + min) / 2
+		if arr[middle] == value {
+			index, result = middle, len(arr[middle:])-1
+			break
+		} else if arr[middle] > value {
+			max = middle - 1
+		} else {
+			min = middle + 1
 		}
 	}
+
 	return
 }
 
@@ -50,7 +64,7 @@ func main() {
 		The complexity of the algorithm should be minimal.
 	*/
 	array := [elem]int{1, 2, 2, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-	neededValue := 2
+	neededValue := 10
 	index, _ := findNumberAndIndex(array, neededValue)
 	fmt.Println(index)
 }
