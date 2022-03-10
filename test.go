@@ -1,41 +1,24 @@
 package main
 
-import (
-	"fmt"
-	"math/rand"
-	"time"
-)
-
-const el = 10
+import "fmt"
 
 func main() {
-	rand.Seed(time.Now().UnixNano())
-	var arr [el]int
-	for i := 0; i < 10; i++ {
-		arr[i] = 10*i + rand.Intn(10)
-	}
-	fmt.Println(arr)
-	value := arr[rand.Intn(el)]
-	fmt.Println(value)
-	fmt.Println(binarySearch(arr, value))
-	value = rand.Intn(500)
-	fmt.Println(value)
-	fmt.Println(binarySearch(arr, value))
+	const el = 10
+	array := [el]int{10, 2, 4, 4, 2, 1, 5, 6, 2, 10}
+	fmt.Println("-----UNSORTED-----")
+	fmt.Println(array)
+	fmt.Println("-----SORTED-----")
+	fmt.Println(sort(array))
 }
-func binarySearch(arr [el]int, value int) int {
-	index := -1
-	min := 0
-	max := el - 1
-	for max >= min {
-		middle := (max + min) / 2
-		if arr[middle] == value {
-			index = middle
-			break
-		} else if arr[middle] > value {
-			max = middle - 1
-		} else {
-			min = middle + 1
+func sort(arr [10]int) [10]int {
+	for i := 0; i < 10; i++ {
+		minIdx := i
+		for j := i; j < 10; j++ {
+			if arr[j] <= arr[minIdx] {
+				minIdx = j
+			}
 		}
+		arr[i], arr[minIdx] = arr[minIdx], arr[i]
 	}
-	return index
+	return arr
 }

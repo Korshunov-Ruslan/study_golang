@@ -8,7 +8,8 @@ import "fmt"
 //	"time"
 //)
 //
-//const elem = 12
+const elem = 12
+
 //
 //func main() {
 //	/*
@@ -31,14 +32,15 @@ import "fmt"
 //	fmt.Println(array)
 //	return array
 //}
-//func findNumber(arr [elem]int, value int) (result int) {
-//	for i := 0; i < elem; i++ {
-//		if arr[i] == value {
-//			result = len(arr[i:]) - 1
-//		}
-//	}
-//	return
-//}
+func findNumberAndIndex(arr [elem]int, value int) (index int, result int) {
+	for i := 0; i < elem; i++ {
+		if arr[i] == value {
+			result = len(arr[i:]) - 1
+			index = i
+		}
+	}
+	return
+}
 
 func main() {
 	/*
@@ -46,18 +48,8 @@ func main() {
 		It is necessary to implement the search for the first occurrence of a given number in an array.
 		The complexity of the algorithm should be minimal.
 	*/
-	array := [12]int{1, 2, 2, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	array := [elem]int{1, 2, 2, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 	neededValue := 2
-	fmt.Println(getIndexOfNumber(array, neededValue))
-}
-func getIndexOfNumber(arr [12]int, value int) int {
-	index := -1
-	for i := 0; i < 12; i++ {
-		fmt.Println(i)
-		if arr[i] == value {
-			index = i
-			break
-		}
-	}
-	return index
+	index, _ := findNumberAndIndex(array, neededValue)
+	fmt.Println(index)
 }
