@@ -20,7 +20,8 @@ const elem = 12
 //	var value int
 //	fmt.Println("Enter a number what you want to find")
 //	fmt.Scan(&value)
-//	fmt.Println(findNumber(arrayGenerator(), value))
+//	_, number := (findNumberAndIndex(arrayGenerator(), value)
+//  fmt.Println(number)
 //}
 //
 //func arrayGenerator() [elem]int {
