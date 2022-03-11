@@ -43,7 +43,7 @@ func findNumberAndIndex(arr [elem]int, value int) (index int, result int) {
 	//	}
 	//}
 	for max >= min {
-		middle := (max + min) / 2
+		middle := (max + min + 1) / 2
 		if arr[middle] == value {
 			index, result = middle, len(arr[middle:])-1
 			break
@@ -63,8 +63,8 @@ func main() {
 		It is necessary to implement the search for the first occurrence of a given number in an array.
 		The complexity of the algorithm should be minimal.
 	*/
-	array := [elem]int{1, 2, 2, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-	neededValue := 10
+	array := [elem]int{1, 2, 2, 2, 3, 4, 5, 5, 5, 8, 9, 10}
+	neededValue := 5
 	index, _ := findNumberAndIndex(array, neededValue)
 	fmt.Println(index)
 }
