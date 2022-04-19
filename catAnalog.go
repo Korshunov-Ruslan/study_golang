@@ -12,14 +12,15 @@ func main() {
 	/*
 		The program receives the names of two files as input and concatenate their contents.
 	*/
-	defaultFileName := "abc.txt" // Write File name
+	fmt.Println(len(os.Args), "1")
+	FileName := "first.txt" // Write File name
 	firstFile, secondFile := "", ""
-	flag.StringVar(&firstFile, "FirstFile", defaultFileName, "give FirstFile")
-	flag.StringVar(&secondFile, "SecondFile", defaultFileName, "give SecondFile")
+	flag.StringVar(&firstFile, "FirstFile", "", "give FirstFile")
+	flag.StringVar(&secondFile, "SecondFile", "", "give SecondFile")
 	flag.Parse()
-
-	if firstFile == "" || secondFile == "" {
-		countFiles(defaultFileName)
+	//if firstFile == "" || secondFile == ""
+	if len(os.Args) < 5 {
+		countFiles(FileName)
 	} else {
 		makeFile(contactContent(firstFile, secondFile))
 	}
@@ -52,6 +53,7 @@ func getFileContent(filename string) string {
 	file, err := os.Open(filename)
 	if err != nil {
 		fmt.Println(err)
+		return ""
 	}
 	defer file.Close()
 	buf := new(bytes.Buffer)
@@ -73,11 +75,13 @@ func makeFile(data string) {
 	f, err := os.Create("cat-analog-result.txt")
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 	defer f.Close()
 	_, err2 := f.WriteString(data)
 	if err2 != nil {
 		fmt.Println(err2)
+		return
 	}
 	fmt.Println("Done")
 }
